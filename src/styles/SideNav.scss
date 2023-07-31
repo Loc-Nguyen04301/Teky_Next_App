@@ -1,0 +1,39 @@
+.sidenav__component {
+  text-align: -webkit-center;
+  .sidenav__menu {
+    background-color: #f2f6fe;
+    .ant-menu-item {
+      padding: 0 !important;
+      margin: 0px 0px 14px 0px !important;
+    }
+    .ant-menu-item-active {
+      background-color: white !important;
+    }
+    .ant-menu-item-selected {
+      background-color: inherit !important;
+      color: #eb9138;
+      svg {
+        fill: #eb9138;
+      }
+      .border-container {
+        border-color: #eb9138;
+      }
+    }
+    border-inline-end: none !important;
+  }
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #d9dde4;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .sidenav__menu {
+    .ant-menu-title-content {
+      display: none;
+    }
+  }
+}

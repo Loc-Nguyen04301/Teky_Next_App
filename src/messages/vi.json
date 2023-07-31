@@ -1,0 +1,30 @@
+{
+  "Index": {
+    "Navbar": {
+      "tab-1": "Học sinh",
+      "tab-2": "Phụ huynh",
+      "download-btn": "Tải lên",
+      "login-btn": "Đăng nhập",
+      "label-name": "Danh mục"
+    }
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, vi {Tiếng Việt} en {Tiếng Anh} other {Unknown}}"
+  },
+  "Login": {
+    "login": "Đăng nhập",
+    "welcome": "Chào mừng",
+    "back": "Bạn đã quay trở lại",
+    "phone": "Số điện thoại hoặc email",
+    "password": "Mật khẩu",
+    "forget": "Quên mật khẩu",
+    "student-acc": "Tài khoản học sinh",
+    "have-account": "Bạn chưa có tài khoản",
+    "regis-now": "Đăng kí ngay"
+  },
+  "ProfileModal": {
+    "manageAccount": "Quản lý tài khoản",
+    "logout": "Đăng xuất"
+  }
+}

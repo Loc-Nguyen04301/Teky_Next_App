@@ -1,0 +1,46 @@
+footer {
+  .f-menu li a {
+    display: block;
+    background: url("https://teky.edu.vn/static/web/v3/img/icon/arrow-footer.svg")
+      0 3px no-repeat;
+    padding-left: 30px;
+    font-weight: 500;
+    font-size: 14px;
+    color: black;
+    line-height: 120%;
+  }
+  .f-menu li {
+    margin-bottom: 20px;
+  }
+  .info-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 22px;
+    .info-icon {
+      margin-top: 4px;
+      margin-right: 4px;
+    }
+    .info-cont {
+      .list-hotline {
+        li {
+          padding: 0 16px;
+          &:first-child {
+            border-right: 1px solid #000;
+            padding-left: 0;
+          }
+          &:nth-child(2) {
+            padding-right: 0;
+          }
+        }
+        display: flex;
+        .hotline-label {
+          display: block;
+          font-size: 12px;
+        }
+        .hotline-number {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

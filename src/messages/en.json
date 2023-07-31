@@ -1,0 +1,30 @@
+{
+  "Index": {
+    "Navbar": {
+      "tab-1": "Student",
+      "tab-2": "Parent",
+      "download-btn": "Upload",
+      "login-btn": "Login",
+      "label-name": "Play list"
+    }
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, vi {Vietnamese} en {English} other {Unknown}}"
+  },
+  "Login": {
+    "login": "Login",
+    "welcome": "Welcome",
+    "back": "You turn back",
+    "phone": "Email",
+    "password": "Password",
+    "forget": "forget password",
+    "student-acc": "Student account",
+    "have-account": "Do not have an account",
+    "regis-now": "Register now"
+  },
+  "ProfileModal": {
+    "manageAccount": "Manage Account",
+    "logout": "Log out"
+  }
+}

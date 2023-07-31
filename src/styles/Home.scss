@@ -1,0 +1,27 @@
+.main {
+  width: calc(100vw - 250px);
+  :where(.css-dev-only-do-not-override-1m62vyb).ant-btn-default:not(
+      :disabled
+    ):not(.ant-btn-disabled):hover {
+    color: white !important;
+    border-color: white !important;
+  }
+  :where(.css-dev-only-do-not-override-1m62vyb).ant-btn-default:not(
+      :disabled
+    ):not(.ant-btn-disabled):active {
+    color: white !important;
+    border-color: white !important;
+  }
+}
+
+.card__component {
+  &:hover {
+    box-shadow: 0px 0px 30px rgba(235, 145, 56, 0.2);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .main {
+    width: calc(100vw - 50px);
+  }
+}
