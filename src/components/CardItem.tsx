@@ -26,7 +26,7 @@ const CardItem = ({
               width={80}
               height={80}
               alt="avatar"
-              className="max-tablet:w-[40px]"
+              className="max-tablet:w-[32px] rounded-full"
             />
           </div>
           <div className="text-sm font-medium">
@@ -40,7 +40,7 @@ const CardItem = ({
           </div>
         </div>
         <div className="flex flex-col items-center justify-around">
-          <button className="px-4 py-1 rounded-full border-solid border-[1px] border-primary-orange max-tablet:px-2 max-tablet:py-0">
+          <button className="flex h-[24px] items-center px-4 py-1 rounded-full border-solid border-[1px] border-primary-orange max-tablet:px-2 max-tablet:py-0">
             <span className="text-xs font-semibold text-primary-orange max-tablet:text-[10px]">
               Xem ngay
             </span>

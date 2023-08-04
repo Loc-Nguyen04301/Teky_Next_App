@@ -3,7 +3,8 @@
 @tailwind utilities;
 @font-face {
   font-family: "Quicksand";
-  src: url("../assets/fonts/Quicksand-VariableFont_wght.ttf") format("truetype");
+  src: url("../../public/fonts/Quicksand-VariableFont_wght.ttf")
+    format("truetype");
   /* Add more formats if needed (e.g., .otf, .woff, .woff2) */
 }
 body {

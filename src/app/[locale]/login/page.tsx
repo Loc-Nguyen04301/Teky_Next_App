@@ -1,14 +1,17 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useSession, signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 export default function LoginPage() {
   const t = useTranslations("Login");
 
-  const { data: session } = useSession();
-
+  //The callbackUrl specifies to which URL the user will be redirected after signing in.
   const handleLoginGoogle = () => {
     signIn("google", { callbackUrl: process.env.NEXT_PUBLIC_CLIENT_URL });
+  };
+
+  const handleLoginFacebook = () => {
+    signIn("facebook", { callbackUrl: process.env.NEXT_PUBLIC_CLIENT_URL });
   };
 
   return (
@@ -56,26 +59,38 @@ export default function LoginPage() {
               <p className="text-right text-[15px] mb-[25px] text-[#0654BA] font-medium">
                 <a href="/">{t("forget")}</a>
               </p>
-              <div
-                // type=""
-                className="bg-primary-green text-white rounded-[50px] p-3 h-[50px] w-full text-large font-semibold text-center"
-              >
+              <div className="bg-primary-green text-white rounded-[50px] p-3 h-[50px] w-full text-large font-semibold text-center">
                 {t("login")}
               </div>
             </form>
-            <button
-              name="button"
-              className="my-6 w-full"
-              onClick={handleLoginGoogle}
-            >
-              <Image
-                alt="auth"
-                width={23}
-                height={23}
-                src="https://accounts.teky.edu.vn/assets/teky/img/common/login-google-6b70c9c349beb10a9025183cdc114bb6cf460075f9539d25bbad0e40a33614df.svg"
-                className="mx-auto"
-              />
-            </button>
+            <div className="my-6 flex justify-around">
+              <button
+                name="button"
+                className="w-fit"
+                onClick={handleLoginGoogle}
+              >
+                <Image
+                  alt="auth"
+                  width={23}
+                  height={23}
+                  src="https://accounts.teky.edu.vn/assets/teky/img/common/login-google-6b70c9c349beb10a9025183cdc114bb6cf460075f9539d25bbad0e40a33614df.svg"
+                  className="mx-auto"
+                />
+              </button>
+              <button
+                name="button"
+                className="w-fit"
+                onClick={handleLoginFacebook}
+              >
+                <Image
+                  alt="auth"
+                  width={23}
+                  height={23}
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png"
+                  className="mx-auto"
+                />
+              </button>
+            </div>
             <div className="text-center relative before:w-full before:bg-black before:absolute before:left-0 before:top-1/2 before:content-[''] before:h-[1px] before:block">
               <span className="text-xs px-3 relative z-[1000] bg-white font-light">
                 {t("login")}

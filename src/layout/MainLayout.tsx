@@ -11,6 +11,7 @@ const regexEnPath = new RegExp("/en");
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const [current, setCurrent] = useState<PAGES>(PAGES.PLAYANDSEEN);
+  const [profileModal, setProfileModal] = useState(false);
 
   const pathName = usePathname();
 
@@ -26,14 +27,20 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
     if (currentURL === PAGES.PUBLIC) setCurrent(PAGES.PUBLIC);
     if (currentURL === PAGES.PRESENT) setCurrent(PAGES.PRESENT);
     if (currentURL === PAGES.PARENT) setCurrent(PAGES.PARENT);
+    if (currentURL === PAGES.PROFILE) setCurrent(PAGES.PROFILE);
     return;
   }, [pathName]);
 
   return (
     <div style={{ paddingTop: "134px" }}>
-      <Navbar current={current} setCurrent={setCurrent} />
-      {current === PAGES.PARENT ? (
-        <main className="flex">{children}</main>
+      <Navbar
+        current={current}
+        setCurrent={setCurrent}
+        profileModal={profileModal}
+        setProfileModal={setProfileModal}
+      />
+      {current === PAGES.PARENT || current === PAGES.PROFILE ? (
+        <main>{children}</main>
       ) : (
         <main className="flex">
           <SideNav current={current} setCurrent={setCurrent} />

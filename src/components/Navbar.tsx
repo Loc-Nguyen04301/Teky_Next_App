@@ -31,20 +31,25 @@ function getItem(
 interface NavbarProps {
   current: string;
   setCurrent: Dispatch<SetStateAction<PAGES>>;
+  profileModal: boolean;
+  setProfileModal: Dispatch<SetStateAction<boolean>>;
 }
 
-const Navbar = ({ current, setCurrent }: NavbarProps) => {
-  const [profileModal, setProfileModal] = useState(false);
-
+const Navbar = ({
+  current,
+  setCurrent,
+  profileModal,
+  setProfileModal,
+}: NavbarProps) => {
   const t = useTranslations("Index");
 
   const { data: session, status } = useSession();
 
-  const labelName: string = t("Navbar.label-name");
+  const listLabelName: string = t("Navbar.label-name");
 
   const items: MenuProps["items"] = [
     getItem(
-      labelName,
+      listLabelName,
       "danh-muc",
       <Image
         src={"/menu.svg"}
@@ -62,12 +67,14 @@ const Navbar = ({ current, setCurrent }: NavbarProps) => {
           ),
           key: PAGES.PLAYANDSEEN,
           icon: (
-            <Image
-              src={"/playandseen.svg"}
-              width={20}
-              height={14}
-              alt="playandseen"
-            />
+            <div>
+              <Image
+                src={"/playandseen.svg"}
+                width={20}
+                height={14}
+                alt="playandseen"
+              />
+            </div>
           ),
         },
         {
@@ -112,6 +119,24 @@ const Navbar = ({ current, setCurrent }: NavbarProps) => {
             <Image src={"/present.svg"} width={20} height={14} alt="present" />
           ),
         },
+        status === "authenticated"
+          ? {
+              label: (
+                <a className="w-full h-full block" href={PAGES.PROFILE}>
+                  Hồ sơ của tôi
+                </a>
+              ),
+              key: PAGES.PROFILE,
+              icon: (
+                <Image
+                  src={"/profileicon.svg"}
+                  width={20}
+                  height={14}
+                  alt="profile"
+                />
+              ),
+            }
+          : null,
       ]
     ),
   ];
@@ -134,8 +159,8 @@ const Navbar = ({ current, setCurrent }: NavbarProps) => {
   };
 
   return (
-    <header className="fixed top-0 z-[100] w-full bg-[#f2f6fe]">
-      <div className="relative flex justify-between px-5 h-16 max-tablet:p-2">
+    <header className="fixed top-0 z-[100] w-full bg-white">
+      <div className="relative flex justify-between px-5 h-[60px] max-tablet:p-2">
         <a
           href={"/"}
           className="relative self-center cursor-pointer w-[117px] h-[40px] max-laptop-small:max-w-[20%] z-10"
@@ -158,7 +183,7 @@ const Navbar = ({ current, setCurrent }: NavbarProps) => {
         </div>
         <ul className="absolute w-full h-full flex justify-center items-end top-0 left-0 font-bold text-lg normal-case gap-3 max-tablet:text-xs">
           <li
-            className="px-7 py-3 bg-primary-green text-white rounded-t-[20px] max-tablet:p-2"
+            className="px-7 py-2 bg-primary-green text-white rounded-t-[20px] max-tablet:p-2 max-tablet:rounded-t-[10px]"
             onClick={GotoHomePage}
           >
             <Link href={"/"} className="">
@@ -168,8 +193,8 @@ const Navbar = ({ current, setCurrent }: NavbarProps) => {
           <li
             className={
               current === PAGES.PARENT
-                ? `px-7 py-3 bg-primary-orange border-solid border-primary-orange border-[1px] rounded-t-[20px] text-white max-tablet:p-2 `
-                : `px-7 py-3 bg-white border-solid border-primary-green border-[1px] rounded-t-[20px] max-tablet:p-2`
+                ? `px-7 py-2 bg-primary-orange border-solid border-primary-orange border-[1px] rounded-t-[20px] text-white max-tablet:p-2 max-tablet:rounded-t-[10px]`
+                : `px-7 py-2 bg-white border-solid border-primary-green border-[1px] rounded-t-[20px] max-tablet:p-2 max-tablet:rounded-t-[10px]`
             }
             onClick={GotoParentPage}
           >
@@ -197,24 +222,35 @@ const Navbar = ({ current, setCurrent }: NavbarProps) => {
               : `bg-primary-green-bold h-full w-[250px] text-white header__menu text-lg hover:bg-primary-orange`
           }
         />
-        <div className="flex items-center gap-4 pr-5 font-bold">
+        <div className="flex items-center gap-3 pr-5 font-bold">
           <button
             className={
               current === PAGES.PARENT
                 ? `hidden`
-                : `p-4 bg-white rounded-3xl max-laptop-small:p-2`
+                : `p-[14px] bg-white rounded-3xl max-laptop-small:p-2`
             }
           >
             <div className="flex px-3">
-              <span className="relative w-[18px] h-[18px] max-laptop-small:w-[14px]">
+              <span className="relative w-[18px] h-[18px] max-laptop-small:w-[12px]">
                 <Image src={"/plus.svg"} alt="plus" fill />
               </span>
-              <span className={`ml-2`}>{t("Navbar.download-btn")}</span>
+              <span className="ml-2 max-tablet:text-sm">
+                {t("Navbar.download-btn")}
+              </span>
             </div>
           </button>
           {status === "authenticated" ? (
-            <div className="relative">
-              <div className="cursor-pointer" onClick={handleToggleModal}>
+            <div
+              className="relative hover:cursor-pointer"
+              onClick={handleToggleModal}
+            >
+              <div
+                className={
+                  profileModal
+                    ? `bg-white border-[3px] border-solid border-white rounded-t-[20px]`
+                    : `border-[3px] border-solid border-primary-green`
+                }
+              >
                 <Image
                   width={50}
                   height={50}
@@ -235,7 +271,7 @@ const Navbar = ({ current, setCurrent }: NavbarProps) => {
               href="login"
             >
               <div className="flex px-3">
-                <span className="text-center w-[90px]">
+                <span className="text-center w-[90px] max-tablet:text-sm">
                   {t("Navbar.login-btn")}
                 </span>
               </div>

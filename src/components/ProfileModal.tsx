@@ -11,7 +11,7 @@ const ProfileModal = () => {
 
   return (
     <div
-      className="absolute w-[390px] py-4 px-8 right-0 top-12 bg-white rounded-3xl"
+      className="absolute w-[390px] py-4 px-8 right-0 top-[55px] bg-white rounded-b-[20px] rounded-tl-[20px]"
       onClick={handleLogOut}
     >
       <h1 className="mb-3">{t("manageAccount")}</h1>

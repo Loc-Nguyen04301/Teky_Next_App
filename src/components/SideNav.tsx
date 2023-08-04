@@ -1,82 +1,100 @@
 "use client";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import Image from "next/image";
-
 import { Menu, MenuProps } from "antd";
 import { PAGES } from "@/types/type";
+import { useSession } from "next-auth/react";
 
-const items: MenuProps["items"] = [
-  {
-    label: (
-      <a className="w-full h-full block text-left" href={"/"}>
-        Chơi & Xem
-      </a>
-    ),
-    key: PAGES.PLAYANDSEEN,
-    icon: (
-      <div className="w-[30px] h-[30px] rounded-full bg-white text-center border-solid border-[1px] flex justify-center border-container">
-        <Image src="/playandseen.svg" width={19} height={19} alt="Abc" />
-      </div>
-    ),
-  },
-  {
-    label: (
-      <a className="w-full h-full block text-left" href={PAGES.STUDY}>
-        Học
-      </a>
-    ),
-    key: PAGES.STUDY,
-    icon: (
-      <div className="w-[30px] h-[30px] rounded-full bg-white text-center border-solid border-[1px] flex justify-center border-container">
-        <Image src="/study.svg" width={19} height={19} alt="Abc" />
-      </div>
-    ),
-  },
-  {
-    label: (
-      <a className="w-full h-full block text-left" href={PAGES.PROJECT}>
-        Làm Game/dự án
-      </a>
-    ),
-    key: PAGES.PROJECT,
-    icon: (
-      <div className="w-[30px] h-[30px] rounded-full bg-white text-center border-solid border-[1px] flex justify-center border-container">
-        <Image src="/project.svg" width={19} height={19} alt="Abc" />
-      </div>
-    ),
-  },
-  {
-    label: (
-      <a className="w-full h-full block text-left" href={PAGES.PUBLIC}>
-        Cộng đồng
-      </a>
-    ),
-    key: PAGES.PUBLIC,
-    icon: (
-      <div className="w-[30px] h-[30px] rounded-full bg-white text-center border-solid border-[1px] flex justify-center border-container">
-        <Image src="/public.svg" width={19} height={19} alt="Abc" />
-      </div>
-    ),
-  },
-  {
-    label: (
-      <a className="w-full h-full block text-left" href={PAGES.PRESENT}>
-        Đổi quà
-      </a>
-    ),
-    key: PAGES.PRESENT,
-    icon: (
-      <div className="w-[30px] h-[30px] rounded-full bg-white text-center border-solid border-[1px] flex justify-center border-container">
-        <Image src="/present.svg" width={19} height={19} alt="Abc" />
-      </div>
-    ),
-  },
-];
 interface SideNavProps {
   current: string;
   setCurrent: Dispatch<SetStateAction<PAGES>>;
 }
 const SideNav = ({ current, setCurrent }: SideNavProps) => {
+  const { status } = useSession();
+
+  const items: MenuProps["items"] = [
+    {
+      label: (
+        <a className="w-full h-full block text-left" href={"/"}>
+          Chơi & Xem
+        </a>
+      ),
+      key: PAGES.PLAYANDSEEN,
+      icon: (
+        <div className="w-[30px] h-[30px] rounded-full bg-white text-center border-solid border-[1px] flex justify-center border-container">
+          <Image src="/playandseen.svg" width={19} height={19} alt="" />
+        </div>
+      ),
+    },
+    {
+      label: (
+        <a className="w-full h-full block text-left" href={PAGES.STUDY}>
+          Học
+        </a>
+      ),
+      key: PAGES.STUDY,
+      icon: (
+        <div className="w-[30px] h-[30px] rounded-full bg-white text-center border-solid border-[1px] flex justify-center border-container">
+          <Image src="/study.svg" width={19} height={19} alt="" />
+        </div>
+      ),
+    },
+    {
+      label: (
+        <a className="w-full h-full block text-left" href={PAGES.PROJECT}>
+          Làm Game/dự án
+        </a>
+      ),
+      key: PAGES.PROJECT,
+      icon: (
+        <div className="w-[30px] h-[30px] rounded-full bg-white text-center border-solid border-[1px] flex justify-center border-container">
+          <Image src="/project.svg" width={19} height={19} alt="" />
+        </div>
+      ),
+    },
+    {
+      label: (
+        <a className="w-full h-full block text-left" href={PAGES.PUBLIC}>
+          Cộng đồng
+        </a>
+      ),
+      key: PAGES.PUBLIC,
+      icon: (
+        <div className="w-[30px] h-[30px] rounded-full bg-white text-center border-solid border-[1px] flex justify-center border-container">
+          <Image src="/public.svg" width={19} height={19} alt="" />
+        </div>
+      ),
+    },
+    {
+      label: (
+        <a className="w-full h-full block text-left" href={PAGES.PRESENT}>
+          Đổi quà
+        </a>
+      ),
+      key: PAGES.PRESENT,
+      icon: (
+        <div className="w-[30px] h-[30px] rounded-full bg-white text-center border-solid border-[1px] flex justify-center border-container">
+          <Image src="/present.svg" width={19} height={19} alt="" />
+        </div>
+      ),
+    },
+    status === "authenticated"
+      ? {
+          label: (
+            <a className="w-full h-full block text-left" href={PAGES.PROFILE}>
+              Hồ sơ của tôi
+            </a>
+          ),
+          key: PAGES.PROFILE,
+          icon: (
+            <div className="w-[30px] h-[30px] rounded-full bg-white text-center border-solid border-[1px] flex justify-center border-container">
+              <Image src="/profileicon.svg" width={19} height={19} alt="" />
+            </div>
+          ),
+        }
+      : null,
+  ];
+
   const [seenMore, setSeenMore] = useState<number>(5);
 
   const handleClick: MenuProps["onClick"] = (e) => {

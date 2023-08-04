@@ -5,4 +5,5 @@ export enum PAGES {
   PUBLIC = "cong-dong",
   PRESENT = "doi-qua",
   PARENT = "phu-huynh",
+  PROFILE = "profile",
 }
